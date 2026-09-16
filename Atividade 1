@@ -1,5 +1,7 @@
 essa foi a primeira atividade com o Android Studio
 
+o Propósito era criar uma calculadora com um botão para somar as duas variáveis
+
 Parte Xml
 
 <?xml version="1.0" encoding="utf-8"?>
