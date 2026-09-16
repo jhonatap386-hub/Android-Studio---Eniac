@@ -1,0 +1,157 @@
+Trabalhando com imagens
+
+Criar um novo projeto chamado "Trabalhando com imagens"
+
+
+Tipo: Empty Views Activity
+
+Linguagem: Java
+
+Build Configuration Linguagem : Kotlin 
+
+
+
+Baixar duas imagens da internet e salvar todas as letras em minúsculas. Copiar e colar dentro do nosso projeto na pasta res/drawable
+
+Pasta: res/layout
+Arquivo: activity_main.xml
+
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+   xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:app="http://schemas.android.com/apk/res-auto"
+   xmlns:tools="http://schemas.android.com/tools"
+   android:id="@+id/main"
+   android:orientation="vertical"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   tools:context=".MainActivity">
+
+
+   <ImageView
+       android:id="@+id/campoImagem"
+       android:layout_width="250dp"
+       android:layout_height="250dp"
+       android:layout_gravity="center"
+       android:layout_marginTop="10dp"
+       android:src="@drawable/phoenix"
+       />
+
+
+   <TextView
+       android:id="@+id/txtDescricao"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:textSize="25sp"
+       android:layout_margin="15dp"
+       android:text="Phoenix"
+       />
+
+
+   <Button
+       android:id="@+id/bt1"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="Imagem 1"
+       android:textSize="25sp"
+       android:layout_margin="15dp"
+       />
+
+
+   <Button
+       android:id="@+id/bt2"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="Imagem 2"
+       android:textSize="25sp"
+       android:layout_margin="15dp"
+       />
+</LinearLayout>
+
+
+
+
+
+
+
+Pasta: kothin+java
+Arquivo: MainActivity.java
+
+package com.example.n2_exemplo6;
+
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+
+public class MainActivity extends AppCompatActivity  implements View.OnClickListener   {
+
+
+   ImageView imagem ;
+   TextView  descricao ;
+   Button    bt1, bt2 ;
+
+
+
+
+   @Override
+   protected void onCreate(Bundle savedInstanceState) {
+       super.onCreate(savedInstanceState);
+       EdgeToEdge.enable(this);
+       setContentView(R.layout.activity_main);
+       ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+           Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+           v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+           return insets;
+       });
+
+
+
+
+       //Vincular as variaveis (Java) com os componentes visuais (xml)
+       imagem    = findViewById( R.id.campoImagem ) ;
+       descricao = findViewById( R.id.txtDescricao ) ;
+       bt1       = findViewById( R.id.bt1 ) ;
+       bt2       = findViewById( R.id.bt2 ) ;
+
+
+       //quando houver o click nos botões, chamar o método onClick()
+       bt1.setOnClickListener( this );
+       bt2.setOnClickListener( this );
+
+
+   }
+
+
+   @Override
+   public void onClick(View v) {
+       if ( v.getId() == R.id.bt1 ) {
+           imagem.setImageResource(  R.drawable.phoenix  );
+           descricao.setText( "Fenix" );
+       }
+
+
+       if ( v.getId() == R.id.bt2 ) {
+           imagem.setImageResource(  R.drawable.furia );
+           descricao.setText( "Furia" );
+       }
+   }
+}
+
+
+
+
+
+
